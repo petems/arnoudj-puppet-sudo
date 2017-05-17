@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe 'sudo::sudoers', :type => :define do
   let(:title) { 'world.domination' }
+  let(:facts) {{ :puppetversion => Puppet.version }}
 
   context 'minimum params' do
     let(:params) { { :users => ['joe'] } }
@@ -68,7 +69,7 @@ describe 'sudo::sudoers', :type => :define do
       let(:params) { { :users => ['joe'] } }
       let(:facts) {{ :puppetversion => Puppet.version }}
 
-      it { should contain_file('/etc/sudoers.d/world_domination').with_validate_cmd('/usr/sbin/visudo -c -f %') }
+      it { should contain_file('/etc/sudoers.d/world_domination').with_validate_cmd('cat % && /usr/sbin/visudo -c -f %') }
     end
   else
     context "validating content with puppet #{Puppet.version}" do

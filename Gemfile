@@ -1,8 +1,8 @@
 source "http://rubygems.org"
 
 group :test do
-  gem "rake"
-  gem "puppet", ENV['PUPPET_VERSION'] || '~> 3.6.1'
+  gem "rake", '< 11'
+  gem "puppet", ENV['PUPPET_VERSION'] || '~> 4'
   gem "puppet-lint"
   gem "rspec", "~> 3.1.0"
   gem "rspec-puppet"
